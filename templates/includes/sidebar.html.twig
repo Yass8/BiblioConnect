@@ -1,0 +1,53 @@
+<nav id="sidebar">
+    <div class="sidebar-header">
+        <h3>BiblioConnect</h3>
+    </div>
+
+    <ul class="list-unstyled components">
+        <li class="active">
+            <a href="#">Tableau de bord</a>
+        </li>
+        <li>
+            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Catalogues</a>
+            <ul class="collapse list-unstyled" id="homeSubmenu">
+                <li>
+                    <a href="{{path('app_category_index')}}">Catégories</a>
+                </li>
+                <li>
+                    <a href="{{path('app_themes_index')}}">Thèmes</a>
+                </li>
+                <li>
+                    <a href="{{path('app_author_index')}}">Auteurs</a>
+                </li>
+                <li>
+                    <a href="{{path('app_languages_index')}}">Langues</a>
+                </li>
+                <li>
+                    <a href="{{path('app_books_index')}}">Livres</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="{{path('app_reservations_index')}}">Réservations</a>
+        </li>
+        
+        {% if is_granted('ROLE_ADMIN') %}
+        <li>
+            <a href="{{path('app_stocks_index')}}">Stocks</a>
+        </li>
+        <li>
+            <a href="{{path('app_user_index')}}">Gestions utilisateurs</a>
+        </li>
+        {% endif %}
+
+    </ul>
+
+    <ul class="list-unstyled CTAs">
+        <li>
+            <a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="downloa">Mon compte</a>
+        </li>
+        <li>
+            <a href="{{ path('app_logout') }}" class="article">Déconnexion</a>
+        </li>
+    </ul>
+</nav>

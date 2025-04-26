@@ -6,11 +6,12 @@ use App\Entity\Themes;
 use App\Form\ThemesType;
 use App\Repository\ThemesRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+#[IsGranted('ROLE_LIBRARIAN', message: "Vous n'êtes pas autorisé à accéder à cette action.")]
 #[Route('/themes')]
 final class ThemesController extends AbstractController
 {

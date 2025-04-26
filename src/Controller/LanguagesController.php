@@ -6,11 +6,12 @@ use App\Entity\Languages;
 use App\Form\LanguagesType;
 use App\Repository\LanguagesRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+#[IsGranted('ROLE_LIBRARIAN', message: "Vous n'êtes pas autorisé à accéder à cette action.")]
 #[Route('/languages')]
 final class LanguagesController extends AbstractController
 {

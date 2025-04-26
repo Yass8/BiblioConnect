@@ -3,29 +3,40 @@
 namespace App\Form;
 
 use App\Entity\Books;
-use App\Entity\Languages;
 use App\Entity\Stocks;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use App\Entity\Languages;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
 class StocksType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('quantity')
-            ->add('quantity_reserved')
-            ->add('quantity_available')
             ->add('language', EntityType::class, [
                 'class' => Languages::class,
-                'choice_label' => 'id',
+                'choice_label' => 'name',
+                    "attr" => [ "class" => "form-control"]
             ])
             ->add('books', EntityType::class, [
                 'class' => Books::class,
-                'choice_label' => 'id',
+                'choice_label' => 'name',
+                    "attr" => [ "class" => "form-control"]
             ])
+            ->add('quantity', IntegerType::class, [
+                "attr" => [ "class" => "form-control", "min"=>0]
+            ])
+            ->add('quantity_reserved', IntegerType::class, [
+                "attr" => [ "class" => "form-control", "min"=>0]
+            ])
+            ->add('quantity_available', IntegerType::class, [
+                "attr" => [ "class" => "form-control", "min"=>0]
+            ])
+            
         ;
     }
 

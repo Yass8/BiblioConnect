@@ -6,11 +6,12 @@ use App\Entity\Stocks;
 use App\Form\StocksType;
 use App\Repository\StocksRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+#[IsGranted('ROLE_ADMIN', message: "Vous n'êtes pas autorisé à accéder à cette action.")]
 #[Route('/stocks')]
 final class StocksController extends AbstractController
 {

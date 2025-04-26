@@ -9,14 +9,10 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class LoginController extends AbstractController
 {
-    #[Route(path: '/login', name: 'app_login')]
+    #[Route(path: '/', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        $user = $this->getUser(); 
         
-        if ($user) {
-            $this->redirectUser();
-        } 
         
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
@@ -24,6 +20,12 @@ class LoginController extends AbstractController
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
         
+        $user = $this->getUser(); 
+        
+        if ($user && $this->isGranted('IS_AUTHENTICATED_FULLY')) {
+            return $this->redirectUser();
+        } 
+
         return $this->render('login/login.html.twig', [
             'last_username' => $lastUsername,
             'error' => $error,
@@ -39,15 +41,16 @@ class LoginController extends AbstractController
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
 
-    public function redirectUser(){
+    public function redirectUser(): Response
+    {
         $user = $this->getUser();
         
         $roles = $user?->getRoles(); 
         $mainRole = $roles[0] ?? null;
 
         if ($mainRole === 'ROLE_ADMIN') {
-            dd('ROLE_ADMIN');
-            // return $this->redirectToRoute('admin_dashboard');
+            // dd('ROLE_ADMIN');
+            return $this->redirectToRoute('app_admin');
         }
         if ($mainRole === 'ROLE_LIBRARIAN') {
             dd('ROLE_LIBRARIAN');
