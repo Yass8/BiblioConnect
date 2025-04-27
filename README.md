@@ -6,7 +6,8 @@ Vous trouverez dans le projet un fichier .sql déjà exporté, contenant une bas
 Accès aux comptes existants (si vous utilisez l'export SQL) :
 
 Administrateur (ROLE_ADMIN) :
-Email : yas@gmail.com
+Email : yas@gmail.com 
+password: 123456
 
 Bibliothécaire (ROLE_LIBRARIAN) :
 Email : bob@gmail.com
@@ -14,47 +15,13 @@ Email : bob@gmail.com
 Usagers simples (ROLE_USER) :
 Emails : user1@gmail.com, user2@gmail.com
 
-ℹ️ Remarque : pensez à vérifier ou à réinitialiser les mots de passe en base si nécessaire.
+ℹ️ Remarque : Tous ces utilisateurs ont le même mot de passes : 123456
 
-2. Si vous n'utilisez pas l'export SQL
+**2. Si vous n'utilisez pas l'export SQL**
+
 Si vous repartez d'une base de données vide ou différente :
 
-Créez un utilisateur normalement via l'interface ou directement en base.
+- Créez un utilisateur normalement via l'interface formulaire d'inscription.
 
-Modifiez ensuite son rôle dans la base de données pour qu'il ait au minimum le rôle ROLE_ADMIN. Cela permettra d'avoir accès à toutes les fonctionnalités administratives.
+- Mesci de Modifiez s'il vous plait ensuite son rôle dans la base de données pour qu'il ait au minimum le rôle ROLE_ADMIN. Cela permettra d'avoir accès à toutes les fonctionnalités administratives.
 
-3. Logique du projet
-**Usagers (ROLE_USER)**
-Peuvent s’inscrire, se connecter.
-
-Rechercher des ouvrages par titre, auteur, ou thème.
-
-Réserver un livre disponible.
-
-Consulter leurs réservations dans leur profil.
-
-Laisser un avis et noter un livre seulement après l'avoir réservé.
-
-**Bibliothécaires (ROLE_LIBRARIAN)**
-Gèrent le catalogue (ajouter, modifier des livres, auteurs, catégories, langues).
-
-Peuvent consulter l’historique des réservations.
-
-**Administrateurs (ROLE_ADMIN)**
-Ont tous les droits.
-
-Gèrent les stocks, les réservations en attente.
-
-Modèrent les commentaires.
-
-Gèrent les utilisateurs (création, modification de rôles, suppression).
-
-Réservations
-Trois états possibles : pending (en attente), reserved (réservé), cancelled (annulé).
-
-Les usagers peuvent seulement noter/commenter un livre qu'ils ont réservé.
-
-Commentaires et notes
-Les utilisateurs peuvent noter, commenter, ou faire les deux.
-
-Le système calcule une note moyenne visible pour chaque livre.
