@@ -15,7 +15,6 @@ final class AdminController extends AbstractController
 {
     #[Route('/', name: 'app_admin')]
     public function index(
-        
         UserRepository $userRepository,
         BooksRepository $booksRepository,
         ReservationsRepository $reservationsRepository

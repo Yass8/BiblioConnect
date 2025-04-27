@@ -5,7 +5,12 @@
 
     <ul class="list-unstyled components">
         <li class="active">
-            <a href="#">Tableau de bord</a>
+        {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{path('app_librarian')}}">Tableau de bord</a>
+        {% endif %}
+        {% if is_granted('ROLE_LIBARIAN') %}
+            <a href="{{path('app_librarian')}}">Tableau de bord</a>
+        {% endif %}
         </li>
         <li>
             <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Catalogues</a>

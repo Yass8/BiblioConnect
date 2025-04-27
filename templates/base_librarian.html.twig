@@ -57,7 +57,39 @@
                     
                 </div>
             </nav>
-            {% block body %}{% endblock %}
+            {% block body %}
+            
+                <div class="container">
+                    <div class="row">
+                        <div class="card col-3 mx-3">
+
+                            <h4 class="text-center m-3">Utilisateurs</h4>
+                            <p>Nombre total d'utilisateurs : <strong>{{ users|length }}</strong></p>
+
+                            <p>Nombre d'administrateurs : <strong>{{ users|filter(user => 'ROLE_ADMIN' in user.roles)|length }}</strong></p>
+
+                            <p>Nombre d'usagers simples : <strong>{{ users|filter(user => user.roles == ['ROLE_USER'])|length }}</strong></p>
+
+                            <p>Nombre de bibliothécaires : <strong>{{ users|filter(user => 'ROLE_LIBRARIAN' in user.roles)|length }}</strong></p>
+
+                        </div>
+
+                        <div class="card col-3">
+                            <h4 class="text-center m-3">Réservations</h4>
+
+                            <p>Nombre total de réservations : <strong>{{ reservations|length }}</strong></p>
+
+                            <p>Réservations en attente : <strong>{{ reservations|filter(res => res.status == 'pending')|length }}</strong></p>
+
+                            <p>Réservations confirmées : <strong>{{ reservations|filter(res => res.status == 'reserved')|length }}</strong></p>
+
+                            <p>Réservations annulées : <strong>{{ reservations|filter(res => res.status == 'cancelled')|length }}</strong></p>
+
+                        </div>
+                        
+                    </div>
+                </div>
+            {% endblock %}
         </div>
     </div>
     </body>
