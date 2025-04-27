@@ -31,6 +31,9 @@ final class StocksController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $quantity = $stock->getQuantity();
+            $stock->setQuantityAvailable($quantity);
+            $stock->setQuantityReserved(0);
             $entityManager->persist($stock);
             $entityManager->flush();
 

@@ -1,33 +1,108 @@
-{% extends 'base.html.twig' %}
+<!DOCTYPE html>
+<html>
+<head>
+        <meta charset="UTF-8">
+        <title>{% block title %}BiblioConnect!{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+        {% block stylesheets %}
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-{% block title %}Hello RegisterController!{% endblock %}
+            <!-- Font Awesome -->
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"
+            />
+            <!-- Google Fonts -->
+            <link
+            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+            rel="stylesheet"
+            />
+            <!-- MDB -->
+            <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/9.0.0/mdb.min.css"
+            rel="stylesheet"
+            />
+        {% endblock %}
+        
+</head>
+<body>
+   
+    <div class="container d-flex align-items-center justify-content-center mt-5">
 
-{% block body %}
+        <div class="col-5">
+        <h3 class="text-center">BiblioConnect</h3>
 
-<div class="container">
-    <h1 class="text-center">Iscription ✅</h1>
-    <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
-            {{ form_start(form) }}
-                <div class="text-danger">{{ form_errors(form) }}</div>
-                <div class="row">
-                    <div class="col-md-6">
-                        {{ form_row(form.firstname) }}
-                        {{ form_row(form.lastname) }}
-                        {{ form_row(form.email) }}
-                        {{ form_row(form.plainPassword.first, {'attr': {'class': 'form-control'}}) }}
+            <!-- Pills navs -->
+            <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="tab-login" data-mdb-pill-init href="{{path('app_login')}}" role="tab"
+                    aria-controls="pills-login" aria-selected="true">Login</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active" id="tab-register" data-mdb-pill-init href="#pills-register" role="tab"
+                    aria-controls="pills-register" aria-selected="false">Register</a>
+                </li>
+            </ul>
+                <!-- Pills navs -->
+            
+                <!-- Pills content -->
+            <div class="tab-content">
+                    <div class="tab-pane fade show active" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
+                    
+                            {{ form_start(form) }}
+                        
+                                <div class="row col-12">
+                                    <div class="col-6">
+                                        <!-- Name input -->
+                                        <div data-mdb-input-init class="form-outline mb-4">
+                                            {{ form_row(form.firstname) }}
+                                        </div>
+                                        <div data-mdb-input-init class="form-outline mb-4">
+                                            {{ form_row(form.address) }}
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="col-6">
+                                        <!-- Username input -->
+                                        <div data-mdb-input-init class="form-outline mb-4">
+                                            {{ form_row(form.lastname) }}
+                                        </div>
+
+                                        <div data-mdb-input-init class="form-outline mb-4">
+                                            {{ form_row(form.phoneNumber) }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Email input -->
+                                <div data-mdb-input-init class="form-outline mb-4">
+                                    {{ form_row(form.email) }}
+                                </div>
+                        
+                                <!-- Password input -->
+                                <div data-mdb-input-init class="form-outline mb-4">
+                                    {{ form_row(form.plainPassword.first, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+
+                                <!-- Reapet Password input -->
+                                <div data-mdb-input-init class="form-outline mb-4">
+                                    {{ form_row(form.plainPassword.second, {'attr': {'class': 'form-control'}}) }}
+                                </div>                            
+                            {{ form_row(form.inscription, { 'label': "S'inscrire" }) }}
+                        {{ form_end(form) }}
+                        </form>
                     </div>
-                    <div class="col-md-6">
-                        {{ form_row(form.address) }}
-                        {{ form_row(form.phoneNumber) }}
-                        {{ form_row(form.plainPassword.second, {'attr': {'class': 'form-control'}} ) }}
-                    </div>
-                    {{ form_row(form.inscription, { 'label': "S'inscrire" }) }}
                 </div>
-            {{ form_end(form) }}
+                <!-- Pills content -->
+            </div>
+
         </div>
     </div>
-</div>
 
+
+{% block javascripts %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+
+<!-- MDB -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/9.0.0/mdb.umd.min.js"></script>        
 {% endblock %}
+</body>
+</html>
+

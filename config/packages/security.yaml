@@ -42,7 +42,7 @@ security:
     access_control:
          - { path: ^/admin, roles: ROLE_ADMIN }
          - { path: ^/librarian, roles: ROLE_LIBRARIAN }
-         - { path: ^/user, roles: ROLE_USER }
+         - { path: ^/usager, roles: ROLE_USER }
 
 when@test:
     security:

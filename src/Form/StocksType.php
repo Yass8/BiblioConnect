@@ -24,18 +24,18 @@ class StocksType extends AbstractType
             ])
             ->add('books', EntityType::class, [
                 'class' => Books::class,
-                'choice_label' => 'name',
+                'choice_label' => 'title',
                     "attr" => [ "class" => "form-control"]
             ])
             ->add('quantity', IntegerType::class, [
                 "attr" => [ "class" => "form-control", "min"=>0]
             ])
-            ->add('quantity_reserved', IntegerType::class, [
-                "attr" => [ "class" => "form-control", "min"=>0]
-            ])
-            ->add('quantity_available', IntegerType::class, [
-                "attr" => [ "class" => "form-control", "min"=>0]
-            ])
+            // ->add('quantity_reserved', IntegerType::class, [
+            //     "attr" => [ "class" => "form-control", "min"=>0]
+            // ])
+            // ->add('quantity_available', IntegerType::class, [
+            //     "attr" => [ "class" => "form-control", "min"=>0]
+            // ])
             
         ;
     }

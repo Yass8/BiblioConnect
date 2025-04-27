@@ -16,13 +16,6 @@ class ReservationsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('reference', TextType::class, [
-                "attr" => [ "class" => "form-control"]
-            ])
-            ->add('status', TextType::class, [
-                "attr" => [ "class" => "form-control"]
-            ])
-            ->add('handed_over')
             ->add('books', EntityType::class, [
                 'class' => Books::class,
                 'choice_label' => 'title',
@@ -33,6 +26,7 @@ class ReservationsType extends AbstractType
                 'choice_label' => 'firstname',
                     "attr" => [ "class" => "form-control"]
             ])
+            ->add('handed_over')
         ;
     }
 

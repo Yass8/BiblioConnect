@@ -8,20 +8,28 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>Livre</th>
                 <th>Quantity</th>
-                <th>Quantity_reserved</th>
-                <th>Quantity_available</th>
+                <th>Qty_reserved</th>
+                <th>Qty_available</th>
+                <th>Status</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
         {% for stock in stocks %}
             <tr>
-                <td>{{ stock.id }}</td>
+                <td>{{ stock.books.title }}</td>
                 <td>{{ stock.quantity }}</td>
                 <td>{{ stock.quantityReserved }}</td>
                 <td>{{ stock.quantityAvailable }}</td>
+                <td>
+                    {% if stock.quantity == stock.quantityReserved %}
+                        <span class="badge bg-warning">Non disponible</span>
+                        {% else %}
+                        <span class="badge bg-success">Disponible</span>
+                    {% endif %}
+                </td>
                 <td>
                     <a href="{{ path('app_stocks_show', {'id': stock.id}) }}">show</a>
                     <a href="{{ path('app_stocks_edit', {'id': stock.id}) }}">edit</a>

@@ -49,15 +49,14 @@ class LoginController extends AbstractController
         $mainRole = $roles[0] ?? null;
 
         if ($mainRole === 'ROLE_ADMIN') {
-            // dd('ROLE_ADMIN');
             return $this->redirectToRoute('app_admin');
         }
-        if ($mainRole === 'ROLE_LIBRARIAN') {
-            dd('ROLE_LIBRARIAN');
-            // return $this->redirectToRoute('admin_dashboard');
+        if ($mainRole === 'ROLE_LIBRARIAN') {        
+            return $this->redirectToRoute('app_librarian');
         }
 
-        dd('ROLE_USER');
+        return $this->redirectToRoute('app_usager');
+
         
     }
 }

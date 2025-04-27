@@ -38,6 +38,26 @@
         <li>
             <a href="{{path('app_user_index')}}">Gestions utilisateurs</a>
         </li>
+        <li>
+            <a href="#uxSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">UX Usagers</a>
+            <ul class="collapse list-unstyled" id="uxSubmenu">
+                <li>
+                    <a href="{{path('app_avis_index')}}">Avis</a>
+                </li>
+                {# <li>
+                    <a href="{{path('app_themes_index')}}">Thèmes</a>
+                </li>
+                <li>
+                    <a href="{{path('app_author_index')}}">Auteurs</a>
+                </li>
+                <li>
+                    <a href="{{path('app_languages_index')}}">Langues</a>
+                </li>
+                <li>
+                    <a href="{{path('app_books_index')}}">Livres</a>
+                </li> #}
+            </ul>
+        </li>
         {% endif %}
 
     </ul>

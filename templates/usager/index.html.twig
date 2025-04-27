@@ -1,0 +1,83 @@
+{% extends 'base_usager.html.twig' %}
+
+{% block body %}
+
+<div class="container mt-3">
+    <h3 class="m-2">Cherchez votre ouvrage préféré !</h3>
+    <form action="" method="get">
+        <div class="row">
+            <div class="col-4">
+                <div class="mb-3">
+                    <label for="author" class="form-label">Auteurs</label>
+                    <select class="form-select" name="author" id="author">
+                        <option value="">-- Choisir un auteur --</option>
+                        {% for author in authors %}
+                            <option value="{{ author.id }}" {% if app.request.get('author') == author.id %}selected{% endif %}>
+                                {{ author.fullname }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="col-4">
+            <div class="mb-3">
+                    <label for="category" class="form-label">Catégories</label>
+                    <select class="form-select" name="category" id="category">
+                        <option value="">-- Choisir une catégorie --</option>
+                        {% for category in categories %}
+                            <option value="{{ category.id }}">
+                                {{ category.name }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="mb-3">
+                    <label for="theme" class="form-label">Thèmes</label>
+                    <select class="form-select" name="theme" id="theme">
+                        <option value="">-- Choisir un thème --</option>
+                        {% for theme in themes %}
+                            <option value="{{ theme.id }}">
+                                {{ theme.name }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-info">Filtrer</button>
+        </div>
+    </form>
+</div>
+    
+<div
+    class="table-responsive mt-5 container"
+>
+    <table
+        class="table table-striped table-hover table-borderless align-middle"
+    >
+        <tbody class="table-group-divider">
+            {% if books|length > 0 %}
+                {% for book in books %}
+            <tr class="table-light">
+                <td scope="row">
+                    <h3>{{ book.title }}</h3>
+                    <p>Note</p>
+                    <p>Auteur : {{ book.author.fullname }}</p>
+                    <p>Categorie : {{ book.category.name }}</p>
+                    <p>Thèmes : {{ book.themes.name }}</p>
+                    <a href="{{path('app_usager_reservation', {'id': book.id})}}" class="btn btn-sm btn-info">Voir</a>
+                </td>  
+            </tr>
+            {% endfor %}
+
+            {% else %}
+                <p>Aucun ouvrage trouvé !</p>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

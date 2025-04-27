@@ -1,0 +1,48 @@
+{% extends 'base_usager.html.twig' %}
+
+{% block title %}Historique des réservations{% endblock %}
+
+{% block body %}
+    <div class="container mt-2">
+        <h1>Historique de vos réservations</h1>
+
+    {% if reservations is empty %}
+        <p>Vous n'avez effectué aucune réservation.</p>
+    {% else %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Référence</th>
+                    <th>Livre réservé</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for reservation in reservations %}
+                    <tr>
+                        <td>{{ reservation.reference }}</td>
+                        <td>{{ reservation.books.title }}</td>
+                        <td>
+                            {% if reservation.status == 'pending' %}
+                                <span class="badge bg-warning"> En attente</span>
+                            {% elseif reservation.status == 'reserved' %}
+                                <span class="badge bg-success"> Réservée</span>
+                            {% else %}
+                                <span class="badge bg-danger"> Annulé</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if reservation.status == 'pending' %}
+                                <form action="{{ path('annuler_reservation', {'id': reservation.id}) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir annuler cette réservation ?');">
+                                    <button type="submit" class="btn btn-danger">Annuler</button>
+                                </form>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+    </div>
+{% endblock %}

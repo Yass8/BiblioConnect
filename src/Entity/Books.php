@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\BooksRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\DBAL\Types\Types;
+use App\Repository\BooksRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: BooksRepository::class)]
 class Books
@@ -43,10 +43,17 @@ class Books
     #[ORM\OneToMany(targetEntity: Stocks::class, mappedBy: 'books')]
     private Collection $stock;
 
+    /**
+     * @var Collection<int, Avis>
+     */
+    #[ORM\OneToMany(targetEntity: Avis::class, mappedBy: 'books')]
+    private Collection $avis;
+
     public function __construct()
     {
         $this->reservation = new ArrayCollection();
         $this->stock = new ArrayCollection();
+        $this->avis = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -168,6 +175,36 @@ class Books
             // set the owning side to null (unless already changed)
             if ($stock->getBooks() === $this) {
                 $stock->setBooks(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Avis>
+     */
+    public function getAvis(): Collection
+    {
+        return $this->avis;
+    }
+
+    public function addAvi(Avis $avi): static
+    {
+        if (!$this->avis->contains($avi)) {
+            $this->avis->add($avi);
+            $avi->setBooks($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAvi(Avis $avi): static
+    {
+        if ($this->avis->removeElement($avi)) {
+            // set the owning side to null (unless already changed)
+            if ($avi->getBooks() === $this) {
+                $avi->setBooks(null);
             }
         }
 

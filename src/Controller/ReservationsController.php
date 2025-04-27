@@ -31,6 +31,8 @@ final class ReservationsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $reservation->setReference(uniqid('RES_'));
+            $reservation->setStatus('pending');
             $entityManager->persist($reservation);
             $entityManager->flush();
 

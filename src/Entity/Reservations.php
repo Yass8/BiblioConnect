@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use App\Enum\ReservationStatus;
 use App\Repository\ReservationsRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -19,9 +18,6 @@ class Reservations
     #[ORM\Column(length: 255)]
     private ?string $reference = null;
 
-    #[ORM\Column(nullable: true, enumType: ReservationStatus::class)]
-    private ?ReservationStatus $status = null;
-
     #[ORM\Column]
     private ?bool $handed_over = null;
 
@@ -30,6 +26,9 @@ class Reservations
 
     #[ORM\ManyToOne(inversedBy: 'reservation')]
     private ?User $user = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $status = null;
 
     public function __construct()
     {
@@ -49,18 +48,6 @@ class Reservations
     public function setReference(string $reference): static
     {
         $this->reference = $reference;
-
-        return $this;
-    }
-
-    public function getStatus(): ?ReservationStatus
-    {
-        return $this->status;
-    }
-
-    public function setStatus(?ReservationStatus $status): static
-    {
-        $this->status = $status;
 
         return $this;
     }
@@ -97,6 +84,18 @@ class Reservations
     public function setUser(?User $user): static
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(string $status): static
+    {
+        $this->status = $status;
 
         return $this;
     }
